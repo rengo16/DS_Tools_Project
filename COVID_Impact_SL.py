@@ -69,9 +69,6 @@ if covid_data:
         st.write(f"Number of rows: {len(data)}")
         st.dataframe(data.head())
         
-        st.write("Data information:")
-        st.text(data.info())
-        
         st.write("Description of data (statistics):")
         st.dataframe(data.describe())
 
