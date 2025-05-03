@@ -7,3 +7,5 @@ To be able to run the streamlit web app, you simply open command prompt and type
 Of course you have to keep in mind that you need to change the file paths in the code according to your own PC
 
 Also, we used MongoDB to be able to store the data we have in MongoDB, so you will need to install MongoDB if you want to use that feature
+
+TO GET AN IDEA OF HOW THE STREAMLIT APP SHOULD LOOK LIKE, HERE IS MY DEPLOY: https://dstoolsproject-m4tav43yxysbyagafynpjf.streamlit.app/
