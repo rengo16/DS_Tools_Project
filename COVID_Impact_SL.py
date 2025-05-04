@@ -114,7 +114,7 @@ selected_countries = st.sidebar.multiselect(
 
 st.subheader("Boxplot for Total Cases and Total Recovered")
 
-fig1, ax1 = plt.subplots(figsize=(12, 6))
+fig1 = plt.subplots(figsize=(12, 6))
 sns.boxplot(data=df[["Total Cases", "Total Recovered"]])
 st.pyplot(fig1)
 
@@ -127,7 +127,7 @@ upper_bound = Q3 + 1.5 * IQR
 df_cleaned_iqr = df[~((df[["Total Cases", "Total Recovered"]] < lower_bound) |
                         (df[["Total Cases", "Total Recovered"]] > upper_bound)).any(axis=1)]
     
-fig2, ax2 = plt.subplots(figsize=(12,6))
+fig2 = plt.subplots(figsize=(12,6))
 sns.boxplot(data=df_cleaned_iqr[["Total Cases", "Total Recovered"]])
 st.pyplot(fig2)
 st.write(f"Shape without outliers: {df_cleaned_iqr.shape}")
@@ -136,7 +136,7 @@ st.subheader("We will continue to use the original Dataframe, as we need the out
 st.subheader(f"Top {top_number} Countries by Total Cases")
 top_cases = df.sort_values("Total Cases", ascending=False).head(top_number)
     
-fig3, ax3 = plt.subplots(figsize=(10,6))
+fig3 = plt.subplots(figsize=(10,6))
 sns.barplot(x="Total Cases", y="Country", data=top_cases, color='#bc5090')
 st.pyplot(fig3)
 
@@ -144,7 +144,7 @@ if selected_countries:
     st.subheader("Cases vs Recovered comparison")
     compare_df = df[df['Country'].isin(selected_countries)]
         
-    fig4, ax4 = plt.subplots(figsize=(10,6))
+    fig4 = plt.subplots(figsize=(10,6))
     sns.lineplot(x="Country", y="Total Cases", data=compare_df, label="Cases", color='red')
     sns.lineplot(x="Country", y="Total Recovered", data=compare_df, label="Recovered", color='green')
     plt.xticks(rotation=45)
@@ -152,7 +152,7 @@ if selected_countries:
     st.pyplot(fig4)
 
 st.subheader("Correlation Heatmap")
-fig5, ax5 = plt.subplots(figsize=(8,6))
+fig5 = plt.subplots(figsize=(8,6))
 sns.heatmap(df[["Total Cases", "Total Deaths", "Total Recovered", "Population", "Total Tests"]].corr(), 
             annot=True, cmap="flare")
 st.pyplot(fig5)
@@ -160,7 +160,7 @@ st.pyplot(fig5)
 col1, col2 = st.columns(2)
 with col1:
     st.subheader("Total Tests vs Total Cases")
-    fig6, ax6 = plt.subplots(figsize=(8,6))
+    fig6 = plt.subplots(figsize=(8,6))
     sns.scatterplot(x="Total Tests", y="Total Cases", data=df, color='#ff6f61')
     plt.xscale("log")
     plt.yscale("log")
@@ -168,20 +168,20 @@ with col1:
 
 with col2:
     st.subheader("Population vs Total Cases")
-    fig7, ax7 = plt.subplots(figsize=(8,6))
+    fig7 = plt.subplots(figsize=(8,6))
     sns.scatterplot(x="Population", y="Total Cases", data=df, color='#1c9099')
     plt.xscale("log")
     plt.yscale("log")
     st.pyplot(fig7)
 
 st.subheader ("Distribution of Cases, Deaths and Recoveries")
-fig8, ax8 = plt.subplots(figsize=(10,6))
+fig8 = plt.subplots(figsize=(10,6))
 sns.boxplot(data=df[["Total Cases", "Total Deaths", "Total Recovered"]], palette="rocket")
 plt.yscale("log")
 st.pyplot(fig8)
 
 st.subheader("Distribution of Recovery & Death rates")
-fig9, ax9 = plt.subplots(figsize=(10,6))
+fig9 = plt.subplots(figsize=(10,6))
 sns.violinplot(data=df[["Recovery Rate", "Death Rate"]] , palette="mako")
 st.pyplot(fig9)
 
